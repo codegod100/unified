@@ -11,9 +11,12 @@ services:
   agora-bridge:
     image: ghcr.io/codegod100/agora-bridge:docker
     environment:
-      - GARDEN_DIR=/workspace/sql-import/garden
+      - GARDEN_DIR=/workspace/sql-import/data/garden
+      - GARDEN_DB=/workspace/sql-import/data/garden.db
     volumes:
-      - data:/workspace/sql-import
+      - data:/workspace/sql-import/data
+    restart: 
+      "always"
 
 volumes:
   data:
