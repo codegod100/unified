@@ -1,0 +1,19 @@
+services:
+  agora-server:
+    image: ghcr.io/codegod100/agora-server:docker
+    environment:
+      - STORAGE_ENGINE=sqlite
+      - GARDEN_DATABASE=/workspace/agora-server/data/garden.db
+    ports:
+      - "5017:5017"
+    volumes:
+      - data:/workspace/agora-server/data
+  agora-bridge:
+    image: ghcr.io/codegod100/agora-bridge:docker
+    environment:
+      - GARDEN_DIR=/workspace/sql-import/garden
+    volumes:
+      - data:/workspace/sql-import
+
+volumes:
+  data:
